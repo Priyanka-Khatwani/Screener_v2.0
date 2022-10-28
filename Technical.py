@@ -95,7 +95,7 @@ def engulfing_5minutes():
                       datetime.append(intraday_data['Datetime'][k+1])
                       name.append(sample[j])
                 if intraday_data['Close'][k]>intraday_data['Open'][k] and intraday_data['Close'][k+1]<intraday_data['Open'][k+1]: # red before green for bullish engulfing
-                  if intraday_data['Close'][k]<intraday_data['Open'][k+1] and intraday_data['Open'][k]>intraday_data['Close'][k+1]:
+                  if intraday_data['Open'][k]<intraday_data['Close'][k+1] and intraday_data['Close'][k]>intraday_data['Open'][k+1]:
                       #print('Bullish engulfing at : ',intraday_data['Datetime'][k+1])
                       engulfing_type.append("Bullish")
                       datetime.append(intraday_data['Datetime'][k+1])
@@ -120,13 +120,13 @@ def engulfing_1hour():
         try:
             for k in range(0,len(intraday_data)):
                 if intraday_data['Close'][k]<intraday_data['Open'][k] and intraday_data['Close'][k+1]>intraday_data['Open'][k+1]: #green before red for bearish engulfing
-                    if intraday_data['Close'][k]<intraday_data['Open'][k+1] and intraday_data['Open'][k]>=intraday_data['Close'][k+1]:
+                    if intraday_data['Close'][k]<intraday_data['Open'][k+1] and intraday_data['Open'][k]>intraday_data['Close'][k+1]:
                         print('Bearish Engulfing at :',intraday_data['Datetime'][k+1])
                         engulfing_type.append("Bearish")
                         datetime.append(intraday_data['Datetime'][k+1])
                         name.append(sample[j])
                 if intraday_data['Close'][k]>intraday_data['Open'][k] and intraday_data['Close'][k+1]<intraday_data['Open'][k+1]: # red before green for bullish engulfing
-                    if intraday_data['Close'][k]<intraday_data['Open'][k+1] and intraday_data['Open'][k]>intraday_data['Close'][k+1]:
+                    if intraday_data['Open'][k]<intraday_data['Close'][k+1] and intraday_data['Close'][k]>intraday_data['Open'][k+1]:
                         print('Bullish engulfing at : ',intraday_data['Datetime'][k+1])
                         engulfing_type.append("Bullish")
                         datetime.append(intraday_data['Datetime'][k+1])
