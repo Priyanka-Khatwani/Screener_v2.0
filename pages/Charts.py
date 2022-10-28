@@ -10,7 +10,7 @@ sample=['ACC.NS','ADANIENT.NS','ADANIGREEN.NS','ADANIPORTS.NS','ATGL.NS','ADANIT
 
 for l in range(0,len(sample)):
   if chart_choice==sample[l]:
-    df=yf.download(tickers=sample[l],period='60d',interval='60m')
+    df=yf.download(tickers=sample[l],period='60d')
     df.reset_index(inplace=True)
     fig=go.Figure(data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'])])
     st.plotly_chart(fig, use_container_width=True)
