@@ -10,7 +10,7 @@ indicator=st.selectbox(label="Choose an indicator you're most interested in",opt
 name=st.selectbox(label="Choose the stock you're most interested in",options=sample)
 
 df=yf.download(tickers=name,period='22d',interval='5m')
-st.dataframe(df)
+df=df.reset_index(inplace=True)
 
 for i in range(2,len(df)):
   current = df.iloc[i,:]
