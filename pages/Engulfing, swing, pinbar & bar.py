@@ -32,7 +32,10 @@ for i in range(2,df.shape[0]):
          
   for types in range(0,len(indicators)):
            if indicator==indicators[types]:
-           df=df[df[indicator]==True]
+              df=df[df[indicator]==True]
+              
+        
+            
 
 st.dataframe(df)
     
