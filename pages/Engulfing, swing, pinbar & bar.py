@@ -20,6 +20,10 @@ for i in range(2,df.shape[0]):
   candle_range = current['High'] - current['Low']
   idx = df.index[i]
   
+    # Bullish engulfing
+  df.loc[idx,'Bullish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] > current['Open']
+# Bearish engulfing
+  df.loc[idx,'Bearish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] < current['Open']
   # Bullish swing
   df.loc[idx,'Bullish swing'] = current['Low'] > prev['Low'] and prev['Low'] < prev_2['Low']
 # Bearish swing
@@ -35,11 +39,13 @@ for i in range(2,df.shape[0]):
   # Outside bar
   df.loc[idx,'Outside bar'] = current['High'] > prev['High'] and current['Low'] < prev['Low']
   
-  # Bullish engulfing
-  df.loc[idx,'Bullish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] > current['Open']
-# Bearish engulfing
-  df.loc[idx,'Bearish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] < current['Open']
+
   df.fillna(False, inplace=True)
+
+  
+for k in range(0,len(indicators)):
+    if indicator==indicators[k]:
+      df=df[df[indicator]==True]]
 st.dataframe(df)
     
     
