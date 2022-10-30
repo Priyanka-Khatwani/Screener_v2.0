@@ -2,3 +2,5 @@ yfinance
 pandas
 numpy
 plotly
+sklearn
+mpl_finance
