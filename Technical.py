@@ -77,77 +77,13 @@ def lower_bollinger():
     Lower_df['Time of Lower Bollinger Breaking']=LowerBollinger
     return Lower_df
   
-def engulfing_5minutes():
-    datetime=[]
-    engulfing_type=[]
-    name=[]
-    for j in range(0,len(sample)):
-        print("For stock with ticker ",sample[j])
-        intraday_data=yf.download(tickers=sample[j],period='22d',interval='5m')
-        intraday_data.reset_index(inplace=True)
-        #intraday_data['Spread']=intraday_data['Close']-intraday_data['Open']
-        try:
-            for k in range(0,len(intraday_data)):
-                if intraday_data['Close'][k]<intraday_data['Open'][k] and intraday_data['Close'][k+1]>intraday_data['Open'][k+1]: #green before red for bearish engulfing
-                  if intraday_data['Close'][k]<intraday_data['Open'][k+1] and intraday_data['Open'][k]>intraday_data['Close'][k+1]:
-                      #print('Bearish Engulfing at :',intraday_data['Datetime'][k+1])
-                      engulfing_type.append("Bearish")
-                      datetime.append(intraday_data['Datetime'][k])
-                      name.append(sample[j])
-                if intraday_data['Close'][k]>intraday_data['Open'][k] and intraday_data['Close'][k+1]<intraday_data['Open'][k+1]: # red before green for bullish engulfing
-                  if intraday_data['Open'][k]<intraday_data['Close'][k+1] and intraday_data['Close'][k]>intraday_data['Open'][k+1]:
-                      #print('Bullish engulfing at : ',intraday_data['Datetime'][k+1])
-                      engulfing_type.append("Bullish")
-                      datetime.append(intraday_data['Datetime'][k])
-                      name.append(sample[j])
-        except:
-            print("Max reached")
-    engulfing_df=pd.DataFrame()
-    engulfing_df['Name']=name
-    engulfing_df['DateTime']=datetime
-    engulfing_df['Engulfing Type']=engulfing_type
-    
-    return engulfing_df
-def engulfing_1hour():
-    datetime=[]
-    engulfing_type=[]
-    name=[]
-    for j in range(0,len(sample)):
-        print("For stock with ticker ",sample[j])
-        intraday_data=yf.download(tickers=sample[j],period='22d',interval='60m')
-        intraday_data.reset_index(inplace=True)
-        intraday_data['Spread']=intraday_data['Close']-intraday_data['Open']
-        try:
-            for k in range(0,len(intraday_data)):
-                if intraday_data['Close'][k]<intraday_data['Open'][k] and intraday_data['Close'][k+1]>intraday_data['Open'][k+1]: #green before red for bearish engulfing
-                    if intraday_data['Close'][k]<intraday_data['Open'][k+1] and intraday_data['Open'][k]>intraday_data['Close'][k+1]:
-                        print('Bearish Engulfing at :',intraday_data['Datetime'][k+1])
-                        engulfing_type.append("Bearish")
-                        datetime.append(intraday_data['Datetime'][k])
-                        name.append(sample[j])
-                if intraday_data['Close'][k]>intraday_data['Open'][k] and intraday_data['Close'][k+1]<intraday_data['Open'][k+1]: # red before green for bullish engulfing
-                    if intraday_data['Open'][k]<intraday_data['Close'][k+1] and intraday_data['Close'][k]>intraday_data['Open'][k+1]:
-                        print('Bullish engulfing at : ',intraday_data['Datetime'][k+1])
-                        engulfing_type.append("Bullish")
-                        datetime.append(intraday_data['Datetime'][k])
-                        name.append(sample[j])
-        except:
-            print("Max reached")
-    engulfing_df=pd.DataFrame()
-    engulfing_df['Name']=name
-    engulfing_df['DateTime']=datetime
-    engulfing_df['Engulfing Type']=engulfing_type
-    
-    return engulfing_df
+
 choices=st.sidebar.radio(label="Select suitable option",options=("Upper Bollinger breaking for Nifty100","Lower Bollinger breaking for Nifty100","Engulfing 1 hour for Nifty100","Engulfing 5 mins for Nifty100"))
 if choices == 'Upper Bollinger breaking for Nifty100':
                  st.dataframe(upper_bollinger(),use_container_width=True)
 if choices=="Lower Bollinger breaking for Nifty100":
                  st.dataframe(lower_bollinger(),use_container_width=True)
-if choices=="Engulfing 1 hour for Nifty100":
-                 st.dataframe(engulfing_1hour(),use_container_width=True)
-if choices=="Engulfing 5 mins for Nifty100":
-                 st.dataframe(engulfing_5minutes(),use_container_width=True)
+
                  
                  
                  
