@@ -20,21 +20,21 @@ for i in range(2,len(df)):
     candle_range = current['High'] - current['Low']
     idx = df.index[i]
 
-  df.loc[idx,'Bullish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] > current['Open'] #Bullish engulfing
-  df.loc[idx,'Bearish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] < current['Open'] #Bearish engulfing
-  df.loc[idx,'Bullish swing'] = current['Low'] > prev['Low'] and prev['Low'] < prev_2['Low']  #Bullish Swing
-  df.loc[idx,'Bearish swing'] = current['High'] < prev['High'] and prev['High'] > prev_2['High'] #Bearish Swing
-  df.loc[idx,'Bullish pinbar'] = realbody <= candle_range/3 and  min(current['Open'], current['Close']) > (current['High'] + current['Low'])/2 and current['Low'] < prev['Low'] #Bullish pinbar
-  df.loc[idx,'Bearish pinbar'] = realbody <= candle_range/3 and max(current['Open'] , current['Close']) < (current['High'] + current['Low'])/2 and current['High'] > prev['High'] #Bearish pinbar
-  df.loc[idx,'Inside bar'] = current['High'] < prev['High'] and current['Low'] > prev['Low'] #Inside bar
-  df.loc[idx,'Outside bar'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] #Outside bar
-  df.fillna(False, inplace=True)
+      df.loc[idx,'Bullish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] > current['Open'] #Bullish engulfing
+      df.loc[idx,'Bearish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] < current['Open'] #Bearish engulfing
+      df.loc[idx,'Bullish swing'] = current['Low'] > prev['Low'] and prev['Low'] < prev_2['Low']  #Bullish Swing
+      df.loc[idx,'Bearish swing'] = current['High'] < prev['High'] and prev['High'] > prev_2['High'] #Bearish Swing
+      df.loc[idx,'Bullish pinbar'] = realbody <= candle_range/3 and  min(current['Open'], current['Close']) > (current['High'] + current['Low'])/2 and current['Low'] < prev['Low'] #Bullish pinbar
+      df.loc[idx,'Bearish pinbar'] = realbody <= candle_range/3 and max(current['Open'] , current['Close']) < (current['High'] + current['Low'])/2 and current['High'] > prev['High'] #Bearish pinbar
+      df.loc[idx,'Inside bar'] = current['High'] < prev['High'] and current['Low'] > prev['Low'] #Inside bar
+      df.loc[idx,'Outside bar'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] #Outside bar
+      df.fillna(False, inplace=True)
 
          
-  for types in range(0,len(indicators)):
-           if indicator==indicators[types]:
-              df=df[df[indicator]==True]
-              
+      for types in range(0,len(indicators)):
+               if indicator==indicators[types]:
+                  df=df[df[indicator]==True]
+
         
             
 
