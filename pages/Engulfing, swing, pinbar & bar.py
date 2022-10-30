@@ -13,12 +13,12 @@ df=yf.download(tickers=name,period='22d',interval='5m')
 df.reset_index(inplace=True)
 
 for i in range(2,len(df)):
-  current = df.iloc[i,:]
-  prev = df.iloc[i-1,:]
-  prev_2 = df.iloc[i-2,:]
-  realbody = abs(current['Open'] - current['Close'])
-  candle_range = current['High'] - current['Low']
-  idx = df.index[i]
+    current = df.iloc[i,:]
+    prev = df.iloc[i-1,:]
+    prev_2 = df.iloc[i-2,:]
+    realbody = abs(current['Open'] - current['Close'])
+    candle_range = current['High'] - current['Low']
+    idx = df.index[i]
 
   df.loc[idx,'Bullish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] > current['Open'] #Bullish engulfing
   df.loc[idx,'Bearish engulfing'] = current['High'] > prev['High'] and current['Low'] < prev['Low'] and realbody >= 0.8 * candle_range and current['Close'] < current['Open'] #Bearish engulfing
