@@ -1,5 +1,5 @@
 import pandas as pd
-import yfinance
+import yfinance as yf
 import streamlit as st
 
 st.title("Patterns for 5 minutes interval")
@@ -8,7 +8,7 @@ sample=['ACC.NS','ADANIENT.NS','ADANIGREEN.NS','ADANIPORTS.NS','ATGL.NS','ADANIT
 indicators=("Bullish engulfing","Bearish engulfing","Bullish Swing","Bearish swing","Bullish pinbar","Bearish pinbar","Inside bar","Outside bar")
 indicator=st.selectbox(label="Choose an indicator you're most interested in",options=indicators)
 name=st.selectbox(label="Choose the stock you're most interested in",options=sample)
-st.write(name)
+
 df=yf.download(tickers=name,period='22d',interval='5m')
 
 for i in range(2,df.shape[0]):
