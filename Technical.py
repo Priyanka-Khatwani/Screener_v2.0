@@ -78,7 +78,7 @@ def lower_bollinger():
     return Lower_df
   
 
-choices=st.sidebar.radio(label="Select suitable option",options=("Upper Bollinger breaking for Nifty100","Lower Bollinger breaking for Nifty100","Engulfing 1 hour for Nifty100","Engulfing 5 mins for Nifty100"))
+choices=st.sidebar.radio(label="Select suitable option",options=("Upper Bollinger breaking for Nifty100","Lower Bollinger breaking for Nifty100"))
 if choices == 'Upper Bollinger breaking for Nifty100':
                  st.dataframe(upper_bollinger(),use_container_width=True)
 if choices=="Lower Bollinger breaking for Nifty100":
