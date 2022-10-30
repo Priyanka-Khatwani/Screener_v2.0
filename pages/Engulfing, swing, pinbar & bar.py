@@ -11,7 +11,7 @@ name=st.selectbox(label="Choose the stock you're most interested in",options=sam
 
 df=yf.download(tickers=name,period='22d',interval='5m')
 
-for i in range(2,df.shape[0]):
+for i in range(2,len(df)):
   current = df.iloc[i,:]
   prev = df.iloc[i-1,:]
   prev_2 = df.iloc[i-2,:]
