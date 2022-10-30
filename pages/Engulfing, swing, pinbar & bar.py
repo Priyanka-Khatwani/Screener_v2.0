@@ -45,7 +45,7 @@ for i in range(2,df.shape[0]):
   
 for k in range(0,len(indicators)):
     if indicator==indicators[k]:
-      df=df[df[indicator]==True]]
+      df=df[df[indicator]==True]
 st.dataframe(df)
     
     
