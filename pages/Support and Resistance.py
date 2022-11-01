@@ -67,5 +67,5 @@ ax.xaxis.set_major_formatter(date_format)
 for level in levels:        
     plt.hlines(level[1], xmin = df['Date'][level[0]], xmax = max(df['Date']), colors='blue', linestyle='--')    
 #fig.show()
-st.plotly_chart(fig, use_container_width=True)
+st.pyplot(fig=fig)
 
