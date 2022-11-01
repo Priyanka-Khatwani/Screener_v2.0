@@ -16,15 +16,14 @@ interval=st.selectbox(label="Interval Preference",options=('2m','5m','15m','30m'
 period_preference=st.selectbox(label="Period Preference",options=('2d','5d','10d','20d','22d','30d','40d','60d','90d'))
 
 # get stock prices using yfinance library
-def get_stock_price(name):
+def get_stock_price(symbol):
   df = yf.download(symbol,period=period_preference,interval=interval)
   df['Date'] = pd.to_datetime(df.index)
   df['Date'] = df['Date'].apply(mpl_dates.date2num)
   df = df.loc[:,['Date', 'Open', 'High', 'Low', 'Close']]
   return df
-symbol = 'COST'
 
-df = get_stock_price(symbol)
+df = get_stock_price(name)
 
 # determine bullish fractal 
 def is_support(df,i):  
