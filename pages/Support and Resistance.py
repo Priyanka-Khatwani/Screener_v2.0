@@ -60,7 +60,7 @@ for i in range(2, df.shape[0] - 2):
       levels.append((i, high))
       
 # for visualization
-fig,x = plt.subplots(figsize=(16, 9))   
+fig,ax = plt.subplots(figsize=(16, 9))   
 candlestick_ohlc(ax,df.values,width=0.6, colorup='green',colordown='red', alpha=0.8)    
 date_format = mpl_dates.DateFormatter('%d %b %Y')
 ax.xaxis.set_major_formatter(date_format)    
