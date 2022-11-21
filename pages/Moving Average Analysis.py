@@ -15,7 +15,9 @@ name=st.selectbox(label="Choose the stock you're most interested in",options=sam
 
 interval=st.selectbox(label="Interval Preference",options=('2m','5m','15m','30m','60m','90m','1d','5d','1wk'))
 
-df=yf.download(tickers=name,period='22d',interval=interval)
+days=st.selectbox(label="Days Preference",options=('1d','2d','3d','4d','5d','6d','7d','8d','9d'))
+
+df=yf.download(tickers=name,period=days,interval=interval)
 
 df.reset_index(inplace=True)
 df.rename(columns = {'Datetime':'Date'}, inplace = True)
@@ -48,8 +50,9 @@ for i in range(0,len(df)):
   elif df['position'][i]==-1:
     sell_dates.append(df['Date'][i])
     
+Info="Latest BUY at"+buy_dates[-1]    
 #Creating graph
-fig = go.Figure(data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'])])
+fig = go.Figure(data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'])],layout=go.Layout(title=go.layout.Title(text=Info))
 for i in range(0,len(buy_dates)):
   fig.add_shape(type='line',x0=buy_dates[i],x1=buy_dates[i],y0=df['Close'].min(),y1=df['Close'].max(),line=dict(color='orange', width=3))
 for j in range(0,len(sell_dates)):
