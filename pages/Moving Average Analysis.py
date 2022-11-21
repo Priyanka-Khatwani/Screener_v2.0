@@ -41,11 +41,11 @@ df['position'] = df['signal'].diff()
 df.reset_index(inplace=True)
 buy_dates=[]
 sell_dates=[]
-for i in range(0,len(work_data)):
+for i in range(0,len(df)):
   if df['position'][i]==1:
-    buy_dates.append(work_data['Date'][i])
+    buy_dates.append(df['Date'][i])
   elif df['position'][i]==-1:
-    sell_dates.append(work_data['Date'][i])
+    sell_dates.append(df['Date'][i])
     
 #Creating graph
 fig = go.Figure(data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'])])
