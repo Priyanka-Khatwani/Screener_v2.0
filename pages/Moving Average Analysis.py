@@ -56,8 +56,8 @@ for j in range(0,len(sell_dates)):
   fig.add_shape(type='line',x0=sell_dates[j],x1=sell_dates[j],y0=df['Close'].min(),y1=df['Close'].max(),line=dict(color='blue', width=3))
 
 fig.add_trace(go.Scatter(x=df['Date'],
-        y=work_data['short_window_ma'],line=dict(color="#ffe476")))
+        y=df['short_window_ma'],line=dict(color="#ffe476")))
 fig.add_trace(go.Scatter(x=work_data['date'],
-        y=work_data['long_window_ma'],line=dict(color='#00FFFF')))
+        y=df['long_window_ma'],line=dict(color='#00FFFF')))
 st.pyplot(fig=fig)
 
