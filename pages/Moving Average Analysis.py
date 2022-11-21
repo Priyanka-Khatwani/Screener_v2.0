@@ -50,9 +50,9 @@ for i in range(0,len(df)):
   elif df['position'][i]==-1:
     sell_dates.append(df['Date'][i])
     
-Info="Latest BUY at"+buy_dates[-1]    
+  
 #Creating graph
-fig = go.Figure(data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'])],layout=go.Layout(title=go.layout.Title(text=Info)))
+fig = go.Figure(data=[go.Candlestick(x=df['Date'],open=df['Open'],high=df['High'],low=df['Low'],close=df['Close'])],layout=go.Layout(title=go.layout.Title(text="BUY"+buy_dates[-1])))
 for i in range(0,len(buy_dates)):
   fig.add_shape(type='line',x0=buy_dates[i],x1=buy_dates[i],y0=df['Close'].min(),y1=df['Close'].max(),line=dict(color='orange', width=3))
 for j in range(0,len(sell_dates)):
