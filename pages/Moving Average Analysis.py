@@ -18,6 +18,7 @@ interval=st.selectbox(label="Interval Preference",options=('2m','5m','15m','30m'
 df=yf.download(tickers=name,period='22d',interval=interval)
 
 df.reset_index(inplace=True)
+df.rename(columns = {'Datetime':'Date'}, inplace = True)
 
 #Get long and short window for calculation
 short_window=st.number_input("Enter the short window",value=20,step=1)
