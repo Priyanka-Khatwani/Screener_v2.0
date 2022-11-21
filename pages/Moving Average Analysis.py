@@ -59,5 +59,5 @@ fig.add_trace(go.Scatter(x=df['Date'],
         y=df['short_window_ma'],line=dict(color="#ffe476")))
 fig.add_trace(go.Scatter(x=df['Date'],
         y=df['long_window_ma'],line=dict(color='#00FFFF')))
-st.pyplot(fig=fig)
+st.plotly_chart(fig=fig)
 
