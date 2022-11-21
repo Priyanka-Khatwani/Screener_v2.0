@@ -57,7 +57,7 @@ for j in range(0,len(sell_dates)):
 
 fig.add_trace(go.Scatter(x=df['Date'],
         y=df['short_window_ma'],line=dict(color="#ffe476")))
-fig.add_trace(go.Scatter(x=df['date'],
+fig.add_trace(go.Scatter(x=df['Date'],
         y=df['long_window_ma'],line=dict(color='#00FFFF')))
 st.pyplot(fig=fig)
 
