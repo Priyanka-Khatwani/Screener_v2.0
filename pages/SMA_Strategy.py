@@ -12,7 +12,7 @@ st.write("Strategy:\n Creating SMA(13) and SMA(20) and appyling the codition tha
 
 
 
-intervals=st.selectbox(label="Interval Preference",options=('60m','2m','5m','15m','30m','90m','1d','5d','1wk'))
+intervals=st.selectbox(label="Interval Preference",options=('60m','2m','5m','15m','30m','90m'))
 
 df=yf.download(tickers=sample,period='22d',interval=intervals)
 df.reset_index(inplace=True)
