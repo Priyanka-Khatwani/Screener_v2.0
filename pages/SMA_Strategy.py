@@ -12,9 +12,9 @@ st.write("Strategy:\n Creating SMA(13) and SMA(20) and appyling the codition tha
 
 
 
-interval=st.selectbox(label="Interval Preference",options=('60m','2m','5m','15m','30m','90m','1d','5d','1wk'))
+intervals=st.selectbox(label="Interval Preference",options=('60m','2m','5m','15m','30m','90m','1d','5d','1wk'))
 
-df=yf.download(tickers=sample,period='22d',interval='60m')
+df=yf.download(tickers=sample,period='22d',interval=intervals)
 df.reset_index(inplace=True)
 for stocks in sample:
   sma13=df[('Close',stocks)].rolling(window =13,min_periods=1).mean()
