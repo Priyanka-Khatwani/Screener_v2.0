@@ -14,24 +14,29 @@ st.write("Strategy:\n Creating SMA(13) and SMA(20) and appyling the codition tha
 
 choosing=st.radio(label="Choose which stocks to screen",options=('Nifty100','All Stocks'))
 
+list_print=[]
+
 interval=st.selectbox(label="Interval Preference",options=('60m','2m','5m','15m','30m','90m','1d','5d','1wk'))
 if choosing=='Nifty100':
   df=yf.download(tickers=sample,period='22d',interval='60m')
   df.reset_index(inplace=True)
+  for stocks in sample:
+    sma13=df[('Close',stocks)].rolling(window =13,min_periods=1).mean()
+    sma20=df[('Close',stocks)].rolling(window=20,min_periods=1).mean()
+    data=pd.DataFrame({'Datetime':df['Datetime'],'Close':df[('Close',stocks)],'SMA13':sma13,'SMA20':sma20})
+    if data['Close'].iat[-1]>data['SMA13'].iat[-1] and data['Close'].iat[-1]<data['SMA20'].iat[-1]:
+      list_print.append(stocks)
 elif choosing=='All Stocks':
   df=yf.download(tickers=loaf,period='22d',interval='60m')
   df.reset_index(inplace=True)
-
-
-list_print=[]
-
-for stocks in sample:
-  sma13=df[('Close',stocks)].rolling(window =13,min_periods=1).mean()
-  sma20=df[('Close',stocks)].rolling(window=20,min_periods=1).mean()
-  data=pd.DataFrame({'Datetime':df['Datetime'],'Close':df[('Close',stocks)],'SMA13':sma13,'SMA20':sma20})
-  if data['Close'].iat[-1]>data['SMA13'].iat[-1] and data['Close'].iat[-1]<data['SMA20'].iat[-1]:
-    list_print.append(stocks)
+  for stocks in loaf:
+    sma13=df[('Close',stocks)].rolling(window =13,min_periods=1).mean()
+    sma20=df[('Close',stocks)].rolling(window=20,min_periods=1).mean()
+    data=pd.DataFrame({'Datetime':df['Datetime'],'Close':df[('Close',stocks)],'SMA13':sma13,'SMA20':sma20})
+    if data['Close'].iat[-1]>data['SMA13'].iat[-1] and data['Close'].iat[-1]<data['SMA20'].iat[-1]:
+      list_print.append(stocks)
   
+
 list_print
 
 
