@@ -11,7 +11,6 @@ st.write("Strategy:\n Creating SMA(13) and SMA(20) and appyling the codition tha
 
 
 
-list_print=[]
 
 interval=st.selectbox(label="Interval Preference",options=('60m','2m','5m','15m','30m','90m','1d','5d','1wk'))
 
@@ -22,9 +21,10 @@ for stocks in sample:
   sma20=df[('Close',stocks)].rolling(window=20,min_periods=1).mean()
   data=pd.DataFrame({'Datetime':df['Datetime'],'Close':df[('Close',stocks)],'SMA13':sma13,'SMA20':sma20})
   if data['Close'].iat[-1]>data['SMA13'].iat[-1] and data['Close'].iat[-1]<data['SMA20'].iat[-1]:
-    list_print.append(stocks)
+    url = "https://in.tradingview.com/chart/?symbol=NSE%3A"+stocks-".NS"
 
-list_print
+    st.markdown(f'''<a href={url}><button style="background-color:GreenYellow;">Stackoverflow</button></a>''',unsafe_allow_html=True)
+
 
 
 
