@@ -23,7 +23,7 @@ for stocks in sample:
   if data['Close'].iat[-1]>data['SMA13'].iat[-1] and data['Close'].iat[-1]<data['SMA20'].iat[-1]:
     url = "https://in.tradingview.com/chart/?symbol=NSE%3A"+stocks
     url = url[:-3]
-    st.markdown(stocks,"[View Chart](%s)" % url)
+    st.markdown(stocks+"[View Chart](%s)" % url,unsafe_allow_html=True)
 
 
 
